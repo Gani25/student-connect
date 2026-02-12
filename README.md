@@ -48,6 +48,43 @@ This project is built using **Spring Boot REST API (Backend)** and **Angular (Fr
 
 ---
 
+## 📸 Application Preview
+
+### Core Dashboard
+
+| Feature            | Preview                           |
+| ------------------ | --------------------------------- |
+| Dashboard Overview | ![](screenshots/dashboard.png)    |
+| Student Listing    | ![](screenshots/student-list.png) |
+
+---
+
+### Student Management
+
+| Feature             | Preview                             |
+| ------------------- | ----------------------------------- |
+| Add Student         | ![](screenshots/add-student.png)    |
+| Student Detail View | ![](screenshots/student-detail.png) |
+
+---
+
+### Department Management
+
+| Feature         | Preview                                    |
+| --------------- | ------------------------------------------ |
+| Department List | ![](screenshots/department-management.png) |
+| Add Department  | ![](screenshots/add-department.png)        |
+
+---
+
+### Mapping Module
+
+| Feature           | Preview                                |
+| ----------------- | -------------------------------------- |
+| Assign Department | ![](screenshots/assign-department.png) |
+
+---
+
 ## 🧠 Backend Architecture (Industry Standard)
 
 Backend follows clean layered architecture:
@@ -94,7 +131,7 @@ service
 util
 ```
 
-### Important Highlights
+### 💫 Important Highlights
 
 ✅ Global Exception Handler
 ✅ Custom Exception Classes
