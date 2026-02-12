@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="add-form-card">
+
+        <h3 class="mb-3">Add New Department</h3>
+        <p class="muted-small mb-3">
+            Fill the form below to add a new department.
+        </p>
+
+        <form [formGroup]="addForm" (ngSubmit)="submit()">
+
+
+            <div class="mb-3">
+                <label class="form-label">Department Name</label>
+                <input type="text" class="form-control" formControlName="deptName" />
+
+                <div *ngIf="hasError('deptName','required')" class="error-text">
+                    Department name is required.
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Location</label>
+                <input type="text" class="form-control" formControlName="location" />
+
+                <div *ngIf="hasError('location','required')" class="error-text">
+                    Location is required.
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid">
+                Save Department
+            </button>
+
+        </form>
+
+    </div>
+</div>

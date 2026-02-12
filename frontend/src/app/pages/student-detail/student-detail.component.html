@@ -1,0 +1,123 @@
+<div class="container">
+
+    <!-- LOADING -->
+    <div *ngIf="loading" class="text-center py-5">
+        <div class="spinner-border"></div>
+        <p class="muted-small mt-3">Fetching student data...</p>
+    </div>
+
+    <!-- ERROR -->
+    <div *ngIf="error" class="error-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/7486/7486742.png" class="error-img" />
+        <h3 class="mt-4">{{ error.title }}</h3>
+        <p class="muted-small mb-3">{{ error.message }}</p>
+        <button class="btn btn-primary btn-sm" routerLink="/">
+            Back to Students
+        </button>
+    </div>
+
+    <!-- DETAIL CARD -->
+    <div *ngIf="student && !loading" class="detail-card">
+
+        <div class="d-flex gap-1 align-items-start">
+
+            <!-- AVATAR -->
+            <div class="avatar">
+                {{ getAvatar() }}
+            </div>
+
+            <div class="flex-grow-1">
+
+                <h3 class="mb-0">
+                    {{ student.firstName }} {{ student.lastName }}
+                </h3>
+
+                <p class="meta">
+                    Created by {{ student.createdBy || '-' }}
+                    on {{ student.createdAt | date:'medium' }}
+                </p>
+
+                <hr>
+
+                <div class="row gy-3">
+
+                    <div class="col-md-6">
+                        <label class="field-label">Roll No</label>
+                        <div>{{ student.rollNo }}</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="field-label">Gender</label>
+                        <div>{{ student.gender }}</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="field-label">Email</label>
+                        <div>{{ student.email }}</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="field-label">Age</label>
+                        <div>{{ student.age }}</div>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <label class="field-label">Percentage</label>
+                        <div>{{ student.percentage }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="field-label">Address</label>
+                        <div>{{ student.address }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="field-label">Department ID</label>
+                        <div>{{ student.departmentId || "-" }}</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="field-label">Department Name</label>
+                        <div>{{ student.departmentName || "-" }}</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="field-label">Department Location</label>
+                        <div>{{ student.departmentLocation || "-" }}</div>
+                    </div>
+
+
+
+                    <div class="col-md-6">
+                        <label class="field-label">Updated</label>
+                        <div>
+                            {{ student.updatedBy || '-' }}
+                            /
+                            {{ student.updatedAt ? (student.updatedAt | date:'medium') : '-' }}
+                        </div>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <div class="d-flex gap-2">
+
+                    <button class="btn btn-primary btn-sm" (click)="goToUpdate()">
+                        <i class="bi bi-pencil-square"></i> Update
+                    </button>
+
+                    <button class="btn btn-danger btn-sm" (click)="deleteStudent()">
+                        <i class="bi bi-trash"></i> Delete
+                    </button>
+
+                    <button class="btn btn-info btn-sm" (click)="assignDepartmentToStudent()">
+                        <i class="bi bi-plus-circle"></i> Assign Department
+                    </button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+<main class="container my-4">
+
+    <!-- Hero -->
+    <div class="hero mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h2 class="mb-1">Department Management</h2>
+                <p class="mb-0 muted-small">
+                    Manage all departments of your organization from one place.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Error -->
+    <div *ngIf="error" class="error-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/7486/7486742.png" class="error-img" alt="Error" />
+        <h3 class="mt-4">{{ error.title }}</h3>
+        <p class="muted-small mb-3">
+            {{ error.message }}
+        </p>
+        <button class="btn btn-primary btn-sm" (click)="fetchDepartments()">
+            Try Again
+        </button>
+    </div>
+
+    <!-- Cards -->
+    <div *ngIf="showData && !error" class="row g-3 mb-3">
+
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let dept of departments">
+            <div class="card card-student h-100">
+                <div class="card-body d-flex flex-column">
+
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h6 class="mb-0">
+                            {{ dept.deptName }}
+                        </h6>
+                        <span class="tag">
+                            ID: {{ dept.deptId }}
+                        </span>
+                    </div>
+
+                    <div class="muted-small mb-2">
+                        {{ dept.location }}
+                    </div>
+
+                    <div class="mb-3 small">
+                        <div>
+                            <strong>Created:</strong>
+                            {{ dept.createdBy || '-' }}
+                            /
+                            {{ dept.createdAt? (dept.createdAt | date:"medium") : '-' }}
+                        </div>
+                        <div>
+                            <strong>Updated:</strong>
+                            {{ dept.updatedBy || '-' }}
+                            /
+                            {{ dept.updatedAt? (dept.updatedAt | date:"medium") : '-' }}
+                        </div>
+                    </div>
+
+                    <div class="mt-auto d-flex justify-content-between">
+                        <button class="btn btn-sm btn-outline-primary" (click)="updateDepartment(dept)">
+                            <i class="bi bi-pencil-square"></i>
+                            Update
+                        </button>
+
+                        <button class="btn btn-sm btn-outline-danger" (click)="deleteDepartment(dept)">
+                            <i class="bi bi-trash"></i>
+                            Delete
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</main>

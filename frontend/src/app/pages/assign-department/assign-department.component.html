@@ -1,0 +1,64 @@
+<div class="container">
+
+    <!-- Error UI -->
+    <div *ngIf="error" class="error-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/7486/7486742.png" class="error-img" />
+        <h3 class="mt-4">{{ error.title }}</h3>
+        <p class="muted-small mb-3">{{ error.message }}</p>
+
+        <button class="btn btn-primary btn-sm" routerLink="/">
+            Back to Students
+        </button>
+    </div>
+
+    <!-- Assign Form -->
+    <div class="add-form-card" *ngIf="!error">
+
+        <h3 class="mb-3">Assign Department</h3>
+        <p class="muted-small mb-3">
+            Assign a department to the selected student.
+        </p>
+
+        <form [formGroup]="form" (ngSubmit)="submit()">
+
+            <!-- Fixed Student Info -->
+            <div class="mb-3">
+                <label class="form-label">Student Roll No</label>
+                <div class="form-control bg-light">
+                    {{ rollNo }}
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Student Name</label>
+                <div class="form-control bg-light">
+                    {{ studentName }}
+                </div>
+            </div>
+
+            <!-- Department Dropdown -->
+            <div class="mb-3">
+                <label class="form-label">Department</label>
+
+                <select class="form-select" formControlName="deptId">
+                    <option value="">Select Department</option>
+
+                    <option *ngFor="let d of departments" [value]="d.deptId">
+                        {{ d.deptName }} - {{ d.location }}
+                    </option>
+                </select>
+
+                <div *ngIf="hasError('deptId','required')" class="error-text">
+                    You must select a department.
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-info" [disabled]="form.invalid || loading">
+                {{ loading ? 'Assigning...' : 'Assign Department' }}
+            </button>
+
+        </form>
+    </div>
+
+</div>

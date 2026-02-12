@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg" [ngClass]="theme.isDark() ? 'navbar-dark bg-dark' : 'navbar-light bg-light'">
+    <div class="container">
+
+
+        <a class="navbar-brand d-flex align-items-center gap-2" style="cursor: pointer;" (click)="goToHome()" id="logo">
+            <img src="assets/resources/images/logo.png" alt="logo" class="rounded-circle" />
+            <span class="brand">Student Connect</span>
+        </a>
+
+
+        <div class="d-flex ms-auto align-items-center top-actions">
+
+            <span class="me-3 muted-small">
+                Showing:
+                <strong id="topSummary">All Students</strong>
+            </span>
+
+            <div class="me-2">
+                <button class="btn btn-outline-secondary btn-sm" title="Toggle theme" (click)="toggleTheme()">
+                    <span style="color: var(--text);">
+                        <i class="bi" [ngClass]="theme.isDark() ? 'bi-sun-fill' : 'bi-moon-fill'"></i>
+                    </span>
+                </button>
+            </div>
+
+            <a (click)="goToHome()" class="btn btn-outline-primary btn-sm allstudents">
+                All Students
+            </a>
+            &nbsp;
+            <a (click)="goToDepartment()" class="btn btn-outline-primary btn-sm allstudents">
+                All Departments
+            </a>
+
+
+            <button class="btn btn-primary btn-sm ms-3" (click)="goToNewStudent()">
+                New Student
+            </button>
+            <button class="btn btn-primary btn-sm ms-3" (click)="goToNewDepartment()">
+                New Department
+            </button>
+
+        </div>
+    </div>
+</nav>

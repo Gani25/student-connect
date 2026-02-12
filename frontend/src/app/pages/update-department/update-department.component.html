@@ -1,0 +1,52 @@
+<div class="container">
+
+    <!-- Error UI -->
+    <div *ngIf="error" class="error-container">
+        <img src="https://cdn-icons-png.flaticon.com/512/7486/7486742.png" class="error-img" />
+        <h3 class="mt-4">{{ error.title }}</h3>
+        <p class="muted-small mb-3">{{ error.message }}</p>
+
+        <button class="btn btn-primary btn-sm" routerLink="/departments">
+            Back to Departments
+        </button>
+    </div>
+
+    <!-- Update Form -->
+    <div class="add-form-card" *ngIf="!error">
+
+        <h3 class="mb-3">Update Department</h3>
+        <p class="muted-small mb-3">
+            Modify department details below.
+        </p>
+
+        <form [formGroup]="updateForm" (ngSubmit)="submit()">
+
+            <!-- Department Name -->
+            <div class="mb-3">
+                <label class="form-label">Department Name</label>
+                <input type="text" class="form-control" formControlName="deptName" />
+
+                <div *ngIf="hasError('deptName','required')" class="error-text">
+                    Department name is required.
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="mb-3">
+                <label class="form-label">Location</label>
+                <input type="text" class="form-control" formControlName="location" />
+
+                <div *ngIf="hasError('location','required')" class="error-text">
+                    Location is required.
+                </div>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn btn-primary" [disabled]="updateForm.invalid || loading">
+                {{ loading ? 'Updating...' : 'Update Department' }}
+            </button>
+
+        </form>
+    </div>
+
+</div>

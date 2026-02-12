@@ -1,0 +1,113 @@
+<div class="container">
+    <div class="add-form-card">
+
+        <h3 class="mb-3">Add New Student</h3>
+        <p class="muted-small mb-3">
+            Fill the form below to add a new student.
+        </p>
+
+        <form [formGroup]="addForm" (ngSubmit)="submit()">
+
+
+            <div class="mb-3">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" formControlName="firstName" />
+                <div *ngIf="hasError('firstName','required')" class="error-text">
+                    First name is required.
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-control" formControlName="lastName" />
+                <div *ngIf="hasError('lastName','required')" class="error-text">
+                    Last name is required.
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" formControlName="email" (blur)="onEmailBlur()" />
+
+                <div *ngIf="hasError('email','required')" class="error-text">
+                    Email is required.
+                </div>
+
+                <div *ngIf="hasError('email','email')" class="error-text">
+                    Enter a valid email address.
+                </div>
+                <div *ngIf="hasError('email','emailCheckFailed')" class="error-text">
+                    {{emailErrorMsg}}
+                </div>
+
+                <div *ngIf="hasError('email','emailTaken')" class="error-text">
+                    {{ emailErrorMsg }}
+                </div>
+
+                <div *ngIf="emailAvailable" class="success-text">
+                    Email Available
+                </div>
+
+                <div *ngIf="checkingEmail" class="muted-small">
+                    Checking email availability...
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Age</label>
+                <input type="number" class="form-control" formControlName="age" />
+                <div *ngIf="hasError('age','required')" class="error-text">
+                    Age is required.
+                </div>
+                <div *ngIf="hasError('age','min') || hasError('age','max')" class="error-text">
+                    Age must be between 0 and 200.
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Gender</label>
+                <select class="form-select" formControlName="gender">
+                    <option value="">Select gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                </select>
+
+                <div *ngIf="hasError('gender','required')" class="error-text">
+                    Gender is required.
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Address</label>
+                <input type="text" class="form-control" formControlName="address" />
+                <div *ngIf="hasError('address','required')" class="error-text">
+                    Address cannot be empty.
+                </div>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">Percentage</label>
+                <input type="number" step="0.01" class="form-control" formControlName="percentage" />
+                <div *ngIf="hasError('percentage','required')" class="error-text">
+                    Percentage is required.
+                </div>
+                <div *ngIf="hasError('percentage','min') || hasError('percentage','max')" class="error-text">
+                    Percentage must be between 0 and 100.
+                </div>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid || !emailAvailable">
+                Save Student
+            </button>
+
+        </form>
+    </div>
+</div>
